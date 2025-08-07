@@ -58,6 +58,39 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       };
     }
 
+    case 'ADD_MULTIPLE_ITEMS': {
+      const { product, quantity } = action.payload;
+      const existingItemIndex = state.items.findIndex(item => item.id === product.id);
+
+      let updatedItems: CartItem[];
+
+      if (existingItemIndex >= 0) {
+        // Update existing item quantity
+        updatedItems = state.items.map((item, index) =>
+          index === existingItemIndex
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        // Add new item to cart
+        const newItem: CartItem = {
+          id: product.id,
+          title: product.title,
+          quantity: quantity,
+          price: product.price,
+          image: product.image,
+        };
+        updatedItems = [...state.items, newItem];
+      }
+
+      const { totalItems, totalPrice } = calculateCartTotals(updatedItems);
+      return {
+        items: updatedItems,
+        totalItems,
+        totalPrice,
+      };
+    }
+
     case 'REMOVE_ITEM': {
       const productId = action.payload;
       const updatedItems = state.items.filter(item => item.id !== productId);
@@ -104,6 +137,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 interface CartContextType {
   state: CartState;
   addItem: (product: Product) => void;
+  addMultipleItems: (product: Product, quantity: number) => void;
   removeItem: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
@@ -156,6 +190,26 @@ export function CartProvider({ children }: CartProviderProps) {
     }, 0);
   }, [state.items]);
 
+  const addMultipleItems = React.useCallback((product: Product, quantity: number) => {
+    const existingItem = state.items.find(item => item.id === product.id);
+    
+    dispatch({ type: 'ADD_MULTIPLE_ITEMS', payload: { product, quantity } });
+    
+    // Use setTimeout to defer toast to next tick
+    setTimeout(() => {
+      if (existingItem) {
+        const newTotal = existingItem.quantity + quantity;
+        toast.success(`Added ${quantity} more to cart (${newTotal} total)`);
+      } else {
+        if (quantity === 1) {
+          toast.success(`Added ${product.title} to cart`);
+        } else {
+          toast.success(`Added ${quantity} ${product.title} to cart`);
+        }
+      }
+    }, 0);
+  }, [state.items]);
+
   const removeItem = React.useCallback((productId: number) => {
     const removedItem = state.items.find(item => item.id === productId);
     
@@ -196,6 +250,7 @@ export function CartProvider({ children }: CartProviderProps) {
   const value: CartContextType = {
     state,
     addItem,
+    addMultipleItems,
     removeItem,
     updateQuantity,
     clearCart,

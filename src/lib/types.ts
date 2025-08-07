@@ -31,6 +31,7 @@ export interface CartState {
 // Cart actions
 export type CartAction = 
   | { type: 'ADD_ITEM'; payload: Product }
+  | { type: 'ADD_MULTIPLE_ITEMS'; payload: { product: Product; quantity: number } }
   | { type: 'REMOVE_ITEM'; payload: number }
   | { type: 'UPDATE_QUANTITY'; payload: { id: number; quantity: number } }
   | { type: 'CLEAR_CART' }

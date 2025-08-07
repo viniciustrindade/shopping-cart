@@ -15,7 +15,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { addItem, isInCart } = useCart();
+  const { addItem, getItemQuantity } = useCart();
+  const quantityInCart = getItemQuantity(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation when clicking add to cart
@@ -39,23 +40,31 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Add to Cart Button */}
           <button
             onClick={handleAddToCart}
-            className="absolute top-4 left-4 w-8 h-8 bg-white border-2 border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
+            className={`absolute top-4 left-4 w-8 h-8 rounded-md flex items-center justify-center transition-colors shadow-sm ${
+              quantityInCart > 0
+                ? 'bg-purple-600 text-white hover:bg-purple-700 border-2 border-purple-600'
+                : 'bg-white border-2 border-gray-300 text-gray-600 hover:bg-gray-50'
+            }`}
             aria-label={`Add ${product.title} to cart`}
           >
-            <svg
-              className="w-4 h-4 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              />
-            </svg>
+            {quantityInCart > 0 ? (
+              <span className="text-xs font-bold">{quantityInCart}</span>
+            ) : (
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+            )}
           </button>
 
           {/* Price Badge */}
@@ -76,18 +85,42 @@ export function ProductCard({ product }: ProductCardProps) {
             {truncateText(product.description, 120)}
           </p>
 
-          {/* Rating */}
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <div className="flex items-center">
-              <svg
-                className="w-4 h-4 text-yellow-400 fill-current"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-              <span className="ml-1">{product.rating.rate}</span>
+          {/* Rating and Cart Status */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center">
+                <svg
+                  className="w-4 h-4 text-yellow-400 fill-current"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                <span className="ml-1">{product.rating.rate}</span>
+              </div>
+              <span>({product.rating.count} reviews)</span>
             </div>
-            <span>({product.rating.count} reviews)</span>
+            
+            {/* Cart Quantity Indicator */}
+            {quantityInCart > 0 && (
+              <div className="flex items-center gap-1 text-sm">
+                <svg
+                  className="w-4 h-4 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8m-8 0a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"
+                  />
+                </svg>
+                <span className="text-purple-600 font-medium">
+                  {quantityInCart} in cart
+                </span>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
