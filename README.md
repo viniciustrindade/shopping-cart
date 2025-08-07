@@ -6,7 +6,7 @@ A fully functional shopping cart application built with React, Next.js, and Type
 
 ## ✨ Live Demo
 
-🌐 **[View Live Demo](http://localhost:3001)** (Development Server)
+🌐 **[View Live Demo](https://viniciustrindade.github.io/shopping-cart/)** | 🛠️ **[Development Server](http://localhost:3001)**
 
 ## 📸 Application Screenshots & Features
 

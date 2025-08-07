@@ -46,9 +46,7 @@ export default function RootLayout({
                 },
               },
             }}
-            containerProps={{
-              'data-testid': 'toast-container'
-            }}
+
           />
         </CartProvider>
       </body>
