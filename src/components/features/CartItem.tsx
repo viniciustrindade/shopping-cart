@@ -25,7 +25,7 @@ export function CartItem({ item }: CartItemProps) {
   const totalPrice = item.quantity * item.price;
 
   return (
-    <div className="flex items-center py-4 border-b border-gray-200 last:border-b-0">
+    <div className="flex items-center py-4 border-b border-gray-200 last:border-b-0" data-testid="cart-item">
       {/* Quantity */}
       <div className="w-16 text-center">
         <div className="flex flex-col items-center space-y-1">
@@ -33,14 +33,16 @@ export function CartItem({ item }: CartItemProps) {
             onClick={() => handleQuantityChange(item.quantity + 1)}
             className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-xs"
             aria-label="Increase quantity"
+            data-testid="increase-quantity"
           >
             +
           </button>
-          <span className="text-lg font-medium">{item.quantity}</span>
+          <span className="text-lg font-medium" data-testid="quantity-display">{item.quantity}</span>
           <button
             onClick={() => handleQuantityChange(item.quantity - 1)}
             className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-xs"
             aria-label="Decrease quantity"
+            data-testid="decrease-quantity"
           >
             −
           </button>
@@ -81,6 +83,7 @@ export function CartItem({ item }: CartItemProps) {
           onClick={() => removeItem(item.id)}
           className="text-red-500 hover:text-red-700 p-1"
           aria-label={`Remove ${item.title} from cart`}
+          data-testid="remove-item"
         >
           <svg
             className="w-5 h-5"

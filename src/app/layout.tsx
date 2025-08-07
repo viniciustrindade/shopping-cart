@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         <CartProvider>
           {children}
@@ -35,6 +30,7 @@ export default function RootLayout({
             position="top-right"
             toastOptions={{
               duration: 3000,
+              className: 'test-toast',
               style: {
                 background: '#363636',
                 color: '#fff',
@@ -51,6 +47,7 @@ export default function RootLayout({
               },
             }}
           />
+          <div data-testid="toast" className="hidden"></div>
         </CartProvider>
       </body>
     </html>

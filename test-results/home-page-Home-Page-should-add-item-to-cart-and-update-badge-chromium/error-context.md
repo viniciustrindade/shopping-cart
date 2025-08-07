@@ -1,0 +1,49 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Shop":
+    - /url: /
+  - textbox "Buscar Productos ..."
+  - button "Shopping cart with 1 items":
+    - img
+    - text: "1"
+- main:
+  - heading "Our Products" [level=1]
+  - paragraph: Discover amazing products at great prices
+  - link "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops Add Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops to cart USD 109.95 Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, yo... 3.9 (120 reviews)":
+    - /url: /product/1
+    - img "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+    - button "Add Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops to cart":
+      - img
+    - text: USD 109.95
+    - heading "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops" [level=3]
+    - paragraph: Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, yo...
+    - img
+    - text: 3.9 (120 reviews)
+  - link "Mens Casual Premium Slim Fit T-Shirts Add Mens Casual Premium Slim Fit T-Shirts to cart USD 22.30 Mens Casual Premium Slim Fit T-Shirts Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable... 4.1 (259 reviews)":
+    - /url: /product/2
+    - img "Mens Casual Premium Slim Fit T-Shirts"
+    - button "Add Mens Casual Premium Slim Fit T-Shirts to cart":
+      - img
+    - text: USD 22.30
+    - heading "Mens Casual Premium Slim Fit T-Shirts" [level=3]
+    - paragraph: Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable...
+    - img
+    - text: 4.1 (259 reviews)
+  - link "Mens Cotton Jacket Add Mens Cotton Jacket to cart USD 55.99 Mens Cotton Jacket great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountai... 4.7 (500 reviews)":
+    - /url: /product/3
+    - img "Mens Cotton Jacket"
+    - button "Add Mens Cotton Jacket to cart":
+      - img
+    - text: USD 55.99
+    - heading "Mens Cotton Jacket" [level=3]
+    - paragraph: great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountai...
+    - img
+    - text: 4.7 (500 reviews)
+  - button "VIEW MORE":
+    - img
+    - text: VIEW MORE
+  - text: Showing 3 of 20 products
+- alert
+```

@@ -91,7 +91,7 @@ export default function CartPage() {
               </p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-2xl font-bold text-gray-900" data-testid="total-price">
                 {formatPrice(state.totalPrice)}
               </div>
               <p className="text-sm text-gray-500">Total</p>

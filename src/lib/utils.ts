@@ -53,8 +53,9 @@ export function calculateCartTotals(items: Array<{ quantity: number; price: numb
 
 // Validate product data
 export function isValidProduct(product: any): boolean {
+  if (!product) return false;
+  
   return (
-    product &&
     typeof product.id === 'number' &&
     typeof product.title === 'string' &&
     typeof product.price === 'number' &&

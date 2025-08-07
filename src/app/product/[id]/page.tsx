@@ -132,6 +132,7 @@ export default function ProductDetailsPage() {
                 className="object-contain p-8"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
+                data-testid="product-image"
               />
             </div>
           </div>
@@ -140,7 +141,7 @@ export default function ProductDetailsPage() {
           <div className="space-y-6">
             {/* Category Badge */}
             <div>
-              <Badge variant="purple" className="capitalize">
+              <Badge variant="purple" className="capitalize" data-testid="category-badge">
                 {product.category}
               </Badge>
             </div>
@@ -151,42 +152,44 @@ export default function ProductDetailsPage() {
             </h1>
 
             {/* Rating */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4" data-testid="product-rating">
               <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(product.rating.rate)
-                        ? 'text-yellow-400 fill-current'
-                        : 'text-gray-300'
-                    }`}
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                  </svg>
-                ))}
+                <div data-testid="rating-stars">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-5 h-5 ${
+                        i < Math.floor(product.rating.rate)
+                          ? 'text-yellow-400 fill-current'
+                          : 'text-gray-300'
+                      }`}
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
                 <span className="ml-2 text-sm text-gray-600">
-                  {product.rating.rate} ({product.rating.count} reviews)
+                  <span data-testid="rating-number">{product.rating.rate}</span> (<span data-testid="review-count">{product.rating.count} reviews</span>)
                 </span>
               </div>
             </div>
 
             {/* Price */}
-            <div className="text-3xl font-bold text-gray-900">
+            <div className="text-3xl font-bold text-gray-900" data-testid="product-price">
               {formatPrice(product.price)}
             </div>
 
             {/* Description */}
             <div className="prose prose-gray max-w-none">
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed" data-testid="product-description">
                 {product.description}
               </p>
             </div>
 
             {/* Quantity Selector */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4" data-testid="quantity-selector">
                 <label htmlFor="quantity" className="text-sm font-medium text-gray-900">
                   Quantity:
                 </label>
@@ -195,16 +198,18 @@ export default function ProductDetailsPage() {
                     onClick={() => handleQuantityChange(quantity - 1)}
                     className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     disabled={quantity <= 1}
+                    data-testid="decrease-quantity"
                   >
                     −
                   </button>
-                  <span className="px-4 py-2 border-x border-gray-300 min-w-[60px] text-center">
+                  <span className="px-4 py-2 border-x border-gray-300 min-w-[60px] text-center" data-testid="quantity-display">
                     {quantity}
                   </span>
                   <button
                     onClick={() => handleQuantityChange(quantity + 1)}
                     className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     disabled={quantity >= 10}
+                    data-testid="increase-quantity"
                   >
                     +
                   </button>

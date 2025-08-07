@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/product/${product.id}`}>
-      <Card className="group relative overflow-hidden transition-shadow hover:shadow-lg cursor-pointer">
+      <Card className="group relative overflow-hidden transition-shadow hover:shadow-lg cursor-pointer" data-testid="product-card">
         {/* Product Image */}
         <div className="relative aspect-square overflow-hidden bg-gray-100">
           <Image
@@ -60,7 +60,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Price Badge */}
           <div className="absolute bottom-4 left-4">
-            <Badge variant="purple" className="px-3 py-1 text-sm font-semibold">
+            <Badge variant="purple" className="px-3 py-1 text-sm font-semibold" data-testid="price-badge">
               {formatPriceBadge(product.price)}
             </Badge>
           </div>

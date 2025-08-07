@@ -81,7 +81,7 @@ export function Header({ onSearch, searchQuery = '' }: HeaderProps) {
 
             {/* Cart Badge */}
             {state.totalItems > 0 && (
-              <Badge variant="cart">
+              <Badge variant="cart" data-testid="cart-badge">
                 {state.totalItems}
               </Badge>
             )}
