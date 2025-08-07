@@ -41,7 +41,7 @@ export function Header({ onSearch, searchQuery = '' }: HeaderProps) {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-xl font-bold">
+          <Link href="/" className="text-xl font-bold" data-testid="logo">
             Shop
           </Link>
 

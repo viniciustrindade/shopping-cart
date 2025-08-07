@@ -20,7 +20,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             'bg-purple-600 text-white hover:bg-purple-700 focus-visible:ring-purple-500': variant === 'primary',
             'bg-gray-100 text-gray-900 hover:bg-gray-200 focus-visible:ring-gray-500': variant === 'secondary',
             'hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-500': variant === 'ghost',
-            'border border-gray-300 bg-transparent hover:bg-gray-50 focus-visible:ring-gray-500': variant === 'outline',
+            'border-2 border-gray-600 bg-transparent text-gray-800 hover:bg-gray-100 hover:border-gray-800 focus-visible:ring-gray-500 font-medium': variant === 'outline',
           },
           
           // Sizes

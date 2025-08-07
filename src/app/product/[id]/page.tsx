@@ -88,15 +88,15 @@ export default function ProductDetailsPage() {
       <Layout>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center justify-center py-16">
-            <div className="text-red-600 text-lg font-semibold mb-4">
+            <div className="text-red-600 text-lg font-semibold mb-4" data-testid="error-message">
               {error || 'Product not found'}
             </div>
             <div className="flex gap-4">
-              <Button onClick={() => router.back()} variant="outline">
+              <Button onClick={() => router.back()} variant="outline" data-testid="go-back-button">
                 Go Back
               </Button>
               <Link href="/">
-                <Button>Browse Products</Button>
+                <Button data-testid="browse-products-button">Browse Products</Button>
               </Link>
             </div>
           </div>
@@ -109,14 +109,14 @@ export default function ProductDetailsPage() {
     <Layout>
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-8">
-          <Link href="/" className="hover:text-purple-600">
+        <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-8" data-testid="breadcrumb">
+          <Link href="/" className="hover:text-purple-600" data-testid="breadcrumb-home">
             Home
           </Link>
-          <span>/</span>
-          <span className="text-gray-900 capitalize">{product.category}</span>
-          <span>/</span>
-          <span className="text-gray-900 truncate max-w-xs">
+          <span data-testid="breadcrumb-separator-1">/</span>
+          <span className="text-gray-900 capitalize" data-testid="breadcrumb-category">{product.category}</span>
+          <span data-testid="breadcrumb-separator-2">/</span>
+          <span className="text-gray-900 truncate max-w-xs" data-testid="breadcrumb-product">
             {product.title}
           </span>
         </nav>
@@ -193,21 +193,21 @@ export default function ProductDetailsPage() {
                 <label htmlFor="quantity" className="text-sm font-medium text-gray-900">
                   Quantity:
                 </label>
-                <div className="flex items-center border border-gray-300 rounded-md">
+                <div className="flex items-center border-2 border-gray-600 rounded-md">
                   <button
                     onClick={() => handleQuantityChange(quantity - 1)}
-                    className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    className="px-3 py-2 text-gray-800 hover:text-black hover:bg-gray-100 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={quantity <= 1}
                     data-testid="decrease-quantity"
                   >
                     −
                   </button>
-                  <span className="px-4 py-2 border-x border-gray-300 min-w-[60px] text-center" data-testid="quantity-display">
+                  <span className="px-4 py-2 border-x-2 border-gray-600 min-w-[60px] text-center font-bold text-gray-900" data-testid="quantity-display">
                     {quantity}
                   </span>
                   <button
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    className="px-3 py-2 text-gray-800 hover:text-black hover:bg-gray-100 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={quantity >= 10}
                     data-testid="increase-quantity"
                   >

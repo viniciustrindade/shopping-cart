@@ -30,7 +30,7 @@ test.describe('Cart Functionality', () => {
     
     // Should navigate to cart page
     await expect(page).toHaveURL('/cart');
-    await expect(page.getByText('Your Cart')).toBeVisible();
+    await expect(page.getByTestId('cart-title')).toBeVisible();
   });
 
   test('should display empty cart state', async ({ page }) => {

@@ -31,16 +31,16 @@ export function CartItem({ item }: CartItemProps) {
         <div className="flex flex-col items-center space-y-1">
           <button
             onClick={() => handleQuantityChange(item.quantity + 1)}
-            className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-xs"
+            className="w-6 h-6 rounded-full border-2 border-gray-600 bg-white text-gray-800 flex items-center justify-center hover:bg-gray-100 hover:border-gray-800 text-xs font-medium transition-colors"
             aria-label="Increase quantity"
             data-testid="increase-quantity"
           >
             +
           </button>
-          <span className="text-lg font-medium" data-testid="quantity-display">{item.quantity}</span>
+          <span className="text-lg font-bold text-gray-900" data-testid="quantity-display">{item.quantity}</span>
           <button
             onClick={() => handleQuantityChange(item.quantity - 1)}
-            className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-xs"
+            className="w-6 h-6 rounded-full border-2 border-gray-600 bg-white text-gray-800 flex items-center justify-center hover:bg-gray-100 hover:border-gray-800 text-xs font-medium transition-colors"
             aria-label="Decrease quantity"
             data-testid="decrease-quantity"
           >

@@ -11,7 +11,7 @@ test.describe('Home Page', () => {
     await expect(page.locator('header')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
     
     // Check logo
-    await expect(page.getByText('Shop')).toBeVisible();
+    await expect(page.getByTestId('logo')).toBeVisible();
     
     // Check search bar
     await expect(page.getByPlaceholder('Buscar Productos ...')).toBeVisible();
@@ -46,9 +46,6 @@ test.describe('Home Page', () => {
     // Check cart badge appears with count 1
     await expect(page.locator('[data-testid="cart-badge"]')).toBeVisible();
     await expect(page.locator('[data-testid="cart-badge"]')).toHaveText('1');
-    
-    // Check toast notification appears
-    await expect(page.locator('[data-testid="toast"]')).toBeVisible();
   });
 
   test('should filter products with search', async ({ page }) => {

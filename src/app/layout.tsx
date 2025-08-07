@@ -46,8 +46,10 @@ export default function RootLayout({
                 },
               },
             }}
+            containerProps={{
+              'data-testid': 'toast-container'
+            }}
           />
-          <div data-testid="toast" className="hidden"></div>
         </CartProvider>
       </body>
     </html>
